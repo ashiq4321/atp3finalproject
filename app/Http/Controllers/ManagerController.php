@@ -6,6 +6,7 @@ use App\manager;
 use App\customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
 
 class ManagerController extends Controller
 {
@@ -16,7 +17,8 @@ class ManagerController extends Controller
      */
     public function index(Request $request)
     {
-			return view('manager.index');
+        $user = DB::table('managers')->where('username', $request->session()->get('uname'))->first();
+        return view('manager.index', ['user'=>$user]);
     }
 
     /**

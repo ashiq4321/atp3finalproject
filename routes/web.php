@@ -22,7 +22,7 @@ Route::post('/login', 'LoginController@verify');
 
 Route::get('/signup', 'SignupController@index');
 
-Route::resource('manager', 'ManagerController')->middleware("sess");
+Route::resource('manager', 'ManagerController')->middleware("sess","areYoumanager");
 Route::resource('customer', 'CustomerController')->middleware("sess");
 Route::resource('houseProvider', 'HouseProviderController')->middleware("sess");
 Route::resource('admin', 'AdminController')->middleware("sess");

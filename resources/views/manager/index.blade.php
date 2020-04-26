@@ -146,35 +146,39 @@
 			<tbody>
 				<tr>
 					<td>First Name:</td>
-					<td><%= user.fname %></td>
+					<td>{{$user->fname}}</td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><%= user.lname %></td>
+					<td>{{$user->lname}}</td>
 				</tr>
 				<tr>
-					<td>Father's Name:</td>
-					<td><%= user.fathersName %></td>
-				</tr>
-				<tr>
-					<td>Assigned Area:</td>
-					<td> <%= user.area %> %></td>
+					<td>Username: </td>
+					<td>{{$user->username}}</td>
 				</tr>
 				<tr>
 					<td>Email: </td>
-					<td><%= user.email %></td>
+					<td>{{$user->email}}</td>
 				</tr>
 				<tr>
-					<td>phone: </td>
-					<td><%= user.phone %></td>
+					<td>Phone: </td>
+					<td>{{$user->phone}} </td>
+				</tr>
+				<tr>
+					<td>Address: </td>
+					<td>{{$user->address}} </td>
 				</tr>
 				<tr>
 					<td>National ID: </td>
-					<td><%= user.nid %> </td>
+					<td>{{$user->nid}} </td>
 				</tr>
 				<tr>
-					<td>Password: </td>
-					<td><%= user.password %></td>
+					<td>Assigned Division: </td>
+					<td>{{$user->division}} </td>
+				</tr>
+				<tr>
+					<td>Assigned area:</td>
+					<td>{{$user->area}} </td>
 				</tr>
 			</tbody>
 		</table>
