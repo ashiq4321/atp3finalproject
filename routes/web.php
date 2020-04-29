@@ -22,7 +22,10 @@ Route::post('/login', 'LoginController@verify');
 
 Route::get('/signup', 'SignupController@index');
 
+Route::patch('/manager/profile/{username}/edit', 'ManagerController@updateProfile')->name('manager.updateProfile');
+Route::get('/manager/profile', 'ManagerController@editProfile')->middleware("sess","areYoumanager");
 Route::resource('manager', 'ManagerController')->middleware("sess","areYoumanager");
+
 Route::resource('customer', 'CustomerController')->middleware("sess");
 Route::resource('houseProvider', 'HouseProviderController')->middleware("sess");
 Route::resource('admin', 'AdminController')->middleware("sess");

@@ -7,6 +7,7 @@ use App\customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
+use Validator;
 
 class ManagerController extends Controller
 {
@@ -63,7 +64,12 @@ class ManagerController extends Controller
      */
     public function edit(manager $manager)
     {
-        //
+        
+    }
+    public function editProfile(Request $request)
+    {
+        $user = DB::table('managers')->where('username', $request->session()->get('uname'))->first();
+            return view('manager.edit', ['user'=>$user]);
     }
 
     /**
@@ -76,6 +82,38 @@ class ManagerController extends Controller
     public function update(Request $request, manager $manager)
     {
         //
+    }
+    public function updateProfile(Request $request, manager $manager)
+    {
+        $validation = Validator::make($request->all(), [
+            'fname'=>'required',
+            'lname'=>'required',
+            'phone'=>'required|size:11',
+            'nid'=>'required|size:13',
+            'address'=>'required',
+            'email'=>'required|email',
+            'password'=>'required',
+            'cpassword'=>'same:password'
+		]);
+		if($validation->fails()){
+			return back()
+					->with('errors', $validation->errors())
+					->withInput();
+			return redirect()->route('add.bus')
+							->with('errors', $validation->errors())
+							->withInput();		
+        }
+       $affected= DB::table('managers')
+              ->where('username', $request->username)
+              ->update(array('fname' => $request->fname,
+                       'lname' => $request->lname, 
+                       'password' => $request->password,
+                       'email' => $request->email,      
+                       'phone' => $request->phone,
+                       'address' => $request->address,
+                       'nid' => $request->nid));
+            return redirect()->route('manager.index');               
+
     }
 
     /**
