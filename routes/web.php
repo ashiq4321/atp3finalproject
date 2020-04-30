@@ -22,6 +22,9 @@ Route::post('/login', 'LoginController@verify');
 
 Route::get('/signup', 'SignupController@index');
 
+Route::get('/manager/pendingCustomers/{username}/accept', 'ManagerController@acceptCustomer')->name('customer.accept')->middleware('sess','areYoumanager');
+Route::get('/manager/pendingCustomers/{username}/reject', 'ManagerController@rejectCustomer')->name('customer.reject')->middleware('sess','areYoumanager');
+Route::get('/manager/pendingCustomers', 'ManagerController@pendingCustomers')->name('customer.pending')->middleware("sess","areYoumanager");
 Route::patch('/manager/profile/{username}/edit', 'ManagerController@updateProfile')->name('manager.updateProfile');
 Route::get('/manager/profile', 'ManagerController@editProfile')->middleware("sess","areYoumanager");
 Route::resource('manager', 'ManagerController')->middleware("sess","areYoumanager");

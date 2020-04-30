@@ -22,6 +22,24 @@ class ManagerController extends Controller
         return view('manager.index', ['user'=>$user]);
     }
 
+    public function pendingCustomers()
+    {
+        $users = customer::all()->where('type', 'Pending');
+		return view('manager.pendingCustomers', ['users'=>$users]);
+    }
+    public function rejectCustomer(Request $request)
+    {
+        DB::table('customers')->where('username',$request->username)->delete();
+        return redirect()->route('customer.pending');
+    }
+    public function acceptCustomer(Request $request,manager $manager)
+    {
+       $affected= DB::table('customers')
+              ->where('username', $request->username)
+              ->update(array('type'=> 'Accept'));
+              return redirect()->route('customer.pending');             
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -51,9 +69,7 @@ class ManagerController extends Controller
      */
     public function show(manager $manager)
     {
-        if (View::exists('manager.pendingCustomers')) {
-            return view('manager.index');
-        }
+        
     }
 
     /**

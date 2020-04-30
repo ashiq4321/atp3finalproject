@@ -8,5 +8,4 @@ class customer extends Model
 {
     protected $table = "customers";
     public $timestamps = false;
-    protected $primaryKey = "username";
 }

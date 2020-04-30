@@ -10,7 +10,7 @@
 
 <body>
 	<div>
-		<h2>Customers</h2>
+		<h2>Pending Customers</h2>
 	</div>
 
 	<a href="/manager">Home</a>|
@@ -32,21 +32,22 @@
 			<td>Email</td>
 			<td>Phone</td>
 			<td>Nid</td>
+			<td>Action</td>
 		</tr>
-		<% for(var i=0; i < userlist.length; i++){ %>
-		<tr>
-			<td><%= userlist[i].fname %></td>
-			<td><%= userlist[i].lname %></td>
-			<td><%= userlist[i].username %></td>
-			<td><%= userlist[i].email %></td>
-			<td><%= userlist[i].phone %></td>
-			<td><%= userlist[i].nid %></td>
-			<td>
-				<a href="/manager/pendingCustomers/accept/<%= userlist[i].username %>">Accept</a> |
-				<a href="/manager/pendingCustomers/reject/<%= userlist[i].username %>">Reject</a>
-			</td>
-		</tr>
-		<%  } %>
+		@foreach($users as $user)
+			<tr>
+				<td>{{$user->fname}}</td>
+				<td>{{$user->lname}}</td>
+				<td>{{$user->username}}</td>
+				<td>{{$user->email}}</td>
+				<td>{{$user->phone}}</td>
+				<td>{{$user->nid}}</td>
+				<td>
+					<a onclick="return confirm('Are you sure?')" href="{{route('customer.accept', $user->username)}}">Accept</a> |
+					<a onclick="return confirm('Are you sure?')" href="{{route('customer.reject', $user->username)}}">Reject</a>
+				</td>
+			</tr>
+	    	@endforeach
 	</table>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
 		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

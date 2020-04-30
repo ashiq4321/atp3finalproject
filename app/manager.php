@@ -8,5 +8,4 @@ class manager extends Model
 {
     protected $table = "managers";
     public $timestamps = false;
-    protected $primaryKey = "username";
 }

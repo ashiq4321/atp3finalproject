@@ -127,7 +127,7 @@
 					<div class="col-10 col-md-8 d-none d-xl-block">
 						<nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
 							<ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
-								<a class="mb-5 text-blue" href="{{route('manager.show','pendingCustomers')}}">Pending Customer</a>|
+								<a class="mb-5 text-blue" href="/manager/pendingCustomers">Pending Customer</a>|
 								<a class="mb-5 text-blue" href="/manager/pendingHouseowners">Pending Houseowners</a>|
 								<a class="mb-5 text-blue" href="/manager/view_Available">House to-let</a>|
 								<a class="mb-5 text-blue" href="/manager/view_Customers">Available customer</a>|
