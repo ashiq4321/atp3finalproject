@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Customers</title>
+	<title>pendingHouseowners</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="../css/manager.css">
@@ -10,13 +10,13 @@
 
 <body>
 	<div>
-		<h2>Pending Customers</h2>
+		<h2>pendingHouseowners</h2>
 	</div>
 
 	<a href="/manager">Home</a>|
 	<a href="/logout">Logout</a><br><br>
 	<a href="/search">Search Home</a> <br>
-	<a href="/manager/Profile">Edit Profile</a><br>
+	<a href="/manager/profile">Edit Profile</a><br>
 	<a href="/manager/pendingCustomers">Pending Customer</a><br>
 	<a href="/manager/pendingHouseowners">Pending Houseowners </a><br>
 	<a href="/manager/view_Available">House to-let</a><br>
@@ -32,7 +32,6 @@
 			<td>Email</td>
 			<td>Phone</td>
 			<td>Nid</td>
-			<td>Action</td>
 		</tr>
 		@foreach($users as $user)
 			<tr>
@@ -43,8 +42,8 @@
 				<td>{{$user->phone}}</td>
 				<td>{{$user->nid}}</td>
 				<td>
-					<a onclick="return confirm('Are you sure?')" href="{{route('manager.acceptCustomer', $user->username)}}">Accept</a> |
-					<a onclick="return confirm('Are you sure?')" href="{{route('manager.rejectCustomer', $user->username)}}">Reject</a>
+					<a onclick="return confirm('Are you sure?')" href="{{route('manager.accepthouseProvider', $user->username)}}">Accept</a> |
+					<a onclick="return confirm('Are you sure?')" href="{{route('manager.rejecthouseProvider', $user->username)}}">Reject</a>
 				</td>
 			</tr>
 	    	@endforeach

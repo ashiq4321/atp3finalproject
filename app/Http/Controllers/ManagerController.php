@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\manager;
 use App\customer;
+use App\houseProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,24 @@ class ManagerController extends Controller
         $user = DB::table('managers')->where('username', $request->session()->get('uname'))->first();
         return view('manager.index', ['user'=>$user]);
     }
+    public function pendingHouseowners()
+    {
+        $users = houseProvider::all()->where('type', 'Pending');
+		return view('manager.pendingHouseowners', ['users'=>$users]);
+    }
+    public function rejecthouseProvider(Request $request)
+    {
+        DB::table('houseowners')->where('username',$request->username)->delete();
+        return redirect()->route('manager.pendingHouseOwner');    
+    }
+    public function accepthouseProvider(Request $request,manager $manager)
+    {
+       $affected= DB::table('houseowners')
+              ->where('username', $request->username)
+              ->update(array('type'=> 'Accept'));
+              return redirect()->route('manager.pendingHouseOwner');             
 
+    }
     public function pendingCustomers()
     {
         $users = customer::all()->where('type', 'Pending');
@@ -30,14 +48,14 @@ class ManagerController extends Controller
     public function rejectCustomer(Request $request)
     {
         DB::table('customers')->where('username',$request->username)->delete();
-        return redirect()->route('customer.pending');
+        return redirect()->route('manager.pendingCustomers');    
     }
     public function acceptCustomer(Request $request,manager $manager)
     {
        $affected= DB::table('customers')
               ->where('username', $request->username)
               ->update(array('type'=> 'Accept'));
-              return redirect()->route('customer.pending');             
+              return redirect()->route('manager.pendingCustomers');             
 
     }
     /**
