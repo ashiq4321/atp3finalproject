@@ -22,6 +22,26 @@ class ManagerController extends Controller
         $user = DB::table('managers')->where('username', $request->session()->get('uname'))->first();
         return view('manager.index', ['user'=>$user]);
     }
+    public function customers()
+    {
+        $users = customer::all()->where('type', 'Accept');
+		return view('manager.availableCustomer', ['users'=>$users]);
+    }
+    public function blockCustomer(Request $request)
+    {
+        DB::table('customers')
+              ->where('username', $request->username)
+              ->update(array('status'=> 'Blocked'));
+		return redirect()->route('manager.customers');  
+    }
+    public function unblockCustomer(Request $request)
+    {
+        DB::table('customers')
+              ->where('username', $request->username)
+              ->update(array('status'=> 'Unblocked'));
+    	return redirect()->route('manager.customers');  
+
+    }
     public function pendingHouseowners()
     {
         $users = houseProvider::all()->where('type', 'Pending');
@@ -34,7 +54,7 @@ class ManagerController extends Controller
     }
     public function accepthouseProvider(Request $request,manager $manager)
     {
-       $affected= DB::table('houseowners')
+                DB::table('houseowners')
               ->where('username', $request->username)
               ->update(array('type'=> 'Accept'));
               return redirect()->route('manager.pendingHouseOwner');             
@@ -52,7 +72,7 @@ class ManagerController extends Controller
     }
     public function acceptCustomer(Request $request,manager $manager)
     {
-       $affected= DB::table('customers')
+                DB::table('customers')
               ->where('username', $request->username)
               ->update(array('type'=> 'Accept'));
               return redirect()->route('manager.pendingCustomers');             

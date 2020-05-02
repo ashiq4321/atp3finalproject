@@ -22,6 +22,9 @@ Route::post('/login', 'LoginController@verify');
 
 Route::get('/signup', 'SignupController@index');
 
+Route::get('/manager/view_Customers/{username}/unblock', 'ManagerController@unblockCustomer')->name('manager.unblockCustomer')->middleware('sess','areYoumanager');
+Route::get('/manager/view_Customers/{username}/block', 'ManagerController@blockCustomer')->name('manager.blockCustomer')->middleware('sess','areYoumanager');
+Route::get('/manager/view_Customers', 'ManagerController@customers')->name('manager.customers')->middleware("sess","areYoumanager");
 Route::get('/manager/pendingHouseowners/{username}/accept', 'ManagerController@accepthouseProvider')->name('manager.accepthouseProvider')->middleware('sess','areYoumanager');
 Route::get('/manager/pendingHouseowners/{username}/reject', 'ManagerController@rejecthouseProvider')->name('manager.rejecthouseProvider')->middleware('sess','areYoumanager');
 Route::get('/manager/pendingHouseowners', 'ManagerController@pendingHouseowners')->name('manager.pendingHouseOwner')->middleware("sess","areYoumanager");
