@@ -22,6 +22,9 @@ Route::post('/login', 'LoginController@verify');
 
 Route::get('/signup', 'SignupController@index');
 
+Route::get('/manager/view_Owners/{username}/unblock', 'ManagerController@unblockOwner')->name('manager.unblockOwner')->middleware('sess','areYoumanager');
+Route::get('/manager/view_Owners/{username}/block', 'ManagerController@blockOwner')->name('manager.blockOwner')->middleware('sess','areYoumanager');
+Route::get('/manager/view_Owners', 'ManagerController@owners')->name('manager.owners')->middleware("sess","areYoumanager");
 Route::get('/manager/view_Customers/{username}/unblock', 'ManagerController@unblockCustomer')->name('manager.unblockCustomer')->middleware('sess','areYoumanager');
 Route::get('/manager/view_Customers/{username}/block', 'ManagerController@blockCustomer')->name('manager.blockCustomer')->middleware('sess','areYoumanager');
 Route::get('/manager/view_Customers', 'ManagerController@customers')->name('manager.customers')->middleware("sess","areYoumanager");

@@ -22,6 +22,27 @@ class ManagerController extends Controller
         $user = DB::table('managers')->where('username', $request->session()->get('uname'))->first();
         return view('manager.index', ['user'=>$user]);
     }
+    public function owners()
+    {
+        $users = houseProvider::all()->where('type', 'Accept');
+		return view('manager.availableHouseOwner', ['users'=>$users]);
+    }
+    public function blockOwner(Request $request)
+    {
+        DB::table('houseowners')
+              ->where('username', $request->username)
+              ->update(array('status'=> 'Blocked'));
+		return redirect()->route('manager.owners');  
+    }
+    public function unblockOwner(Request $request)
+    {
+        DB::table('houseowners')
+              ->where('username', $request->username)
+              ->update(array('status'=> 'Unblocked'));
+    	return redirect()->route('manager.owners');  
+
+    }
+    
     public function customers()
     {
         $users = customer::all()->where('type', 'Accept');

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Customers</title>
+	<title>Owners</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="../css/manager.css">
@@ -10,7 +10,7 @@
 
 <body>
 	<div>
-		<h2>Customers</h2>
+		<h2>Owners</h2>
 	</div>
 
 	<a href="/manager">Home</a>|
@@ -32,7 +32,7 @@
 			<td>Email</td>
 			<td>Phone</td>
 			<td>Nid</td>
-            <td>Status</td>
+            <td>status</td>
             <td>Action</td>
 		</tr>
 		@foreach($users as $user)
@@ -51,9 +51,9 @@
 				<td>
                     <a onclick="return confirm('Are you sure?')" href="{{route('manager.acceptCustomer', $user->username)}}">Review</a> |
                     @if($user->status=='Blocked')
-                      <a onclick="return confirm('Are you sure?')" href="{{route('manager.unblockCustomer', $user->username)}}">Unblock</a>
+                      <a onclick="return confirm('Are you sure?')" href="{{route('manager.unblockOwner', $user->username)}}">Unblock</a>
                     @else       
-                    <a onclick="return confirm('Are you sure?')" href="{{route('manager.blockCustomer', $user->username)}}">block</a>
+                    <a onclick="return confirm('Are you sure?')" href="{{route('manager.blockOwner', $user->username)}}">block</a>
                     @endif
 				</td>
 			</tr>
