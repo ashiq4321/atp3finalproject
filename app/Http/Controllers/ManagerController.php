@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\manager;
 use App\customer;
+use App\houseinfo;
 use App\houseProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -21,6 +22,17 @@ class ManagerController extends Controller
     {
         $user = DB::table('managers')->where('username', $request->session()->get('uname'))->first();
         return view('manager.index', ['user'=>$user]);
+    }
+    
+    public function rentedhouse()
+    {
+        $houses = houseinfo::all()->where('status', 'Rented');
+		return view('manager.rentedHouses', ['houses'=>$houses]);
+    }
+    public function housetolet()
+    {
+        $houses = houseinfo::all()->where('status', 'Available');
+		return view('manager.availableHouses', ['houses'=>$houses]);
     }
     public function owners()
     {
