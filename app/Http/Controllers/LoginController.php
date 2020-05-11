@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\login;
+use Validator;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -42,4 +44,31 @@ class LoginController extends Controller
             return redirect('/login');
     	}
     }
+    public function passrecover(Request $req){
+    	return view('login.passrecover');
+    }
+    public function passrecovered(Request $request){
+    	
+    $validation = Validator::make($request->all(), [
+        'username'=>'required|exists:users',
+        'phone'=>'required|size:11|exists:users',
+        'password'=>'required',
+        'cpassword'=>'same:password'
+    ]);
+    if($validation->fails()){
+        return back()
+                ->with('errors', $validation->errors())
+                ->withInput();
+        return redirect()->route('login.passrecover')
+                        ->with('errors', $validation->errors())
+                        ->withInput();		
+    }
+    DB::table('users')
+    ->where('username', $request->username)
+    ->update(array('password'=> $request->password));
+    $request->session()->flash('username', $request->username);
+                $request->session()->flash('msg', 'password recoverd successfully!Enter new password and log in to the system');
+                return redirect()->route('login.index'); 
+    }
+
 }

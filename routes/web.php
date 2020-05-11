@@ -17,11 +17,17 @@ use App\Http\Middleware\alreadyLogged;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login', 'LoginController@index')->middleware("alreadyin");
+Route::get('/login', 'LoginController@index')->name('login.index')->middleware("alreadyin");
 Route::post('/login', 'LoginController@verify');
 
-Route::get('/signup', 'SignupController@index');
+Route::get('/signup', 'SignupController@index')->name('signup.index');
+Route::post('/signup', 'SignupController@store');
 
+Route::get('/login/passrecover', 'LoginController@passrecover')->name('login.passrecover');
+Route::post('/login/passrecover', 'LoginController@passrecovered');
+
+Route::get('/manager/view_Available/{houseid}', 'ManagerController@makeadsSpam')->name('manager.makeadsSpam')->middleware('sess','areYoumanager');
+Route::get('/manager/view_Rented/{houseid}', 'ManagerController@makehouseAvailable')->name('manager.makehouseAvailable')->middleware('sess','areYoumanager');
 Route::get('/manager/view_Rented', 'ManagerController@rentedhouse')->name('manager.rentedhouse')->middleware("sess","areYoumanager");
 Route::get('/manager/view_Available', 'ManagerController@housetolet')->name('manager.housetolet')->middleware("sess","areYoumanager");
 Route::get('/manager/view_Owners/{username}/unblock', 'ManagerController@unblockOwner')->name('manager.unblockOwner')->middleware('sess','areYoumanager');

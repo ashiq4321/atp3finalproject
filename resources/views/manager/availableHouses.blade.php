@@ -43,7 +43,7 @@
                 <td>{{$house->area}}</td>
                 <td>{{$house->address}}</td>
 				<td>
-                    <a onclick="return confirm('Are you sure?')" href="{{route('manager.acceptCustomer', $house->houseid)}}">spam</a>
+                    <a onclick="return confirm('Are you sure?')" href="{{route('manager.makeadsSpam', $house->houseid)}}">spam</a>
 				</td>
 			</tr>
 	    	@endforeach

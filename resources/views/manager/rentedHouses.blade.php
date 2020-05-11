@@ -43,7 +43,7 @@
                 <td>{{$house->area}}</td>
                 <td>{{$house->address}}</td>
 				<td>
-                    <a onclick="return confirm('Are you sure?')" href="{{route('manager.acceptCustomer', $house->houseid)}}">Make it available</a>
+                    <a onclick="return confirm('Are you sure?')" href="{{route('manager.makehouseAvailable', $house->houseid)}}">Make it available</a>
 				</td>
 			</tr>
 	    	@endforeach

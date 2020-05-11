@@ -25,9 +25,9 @@
 					<span class="login100-form-title">
 						Member Login
 					</span>
-
+					<h6>{{session('msg')}}</h6>
 					<div class="wrap-input100 validate-input" data-validate="Valid username is required">
-						<input class="input100" type="text" name="uname" placeholder="username">
+						<input class="input100" type="text" name="uname" value='{{session('username')}}' placeholder="username">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -53,7 +53,7 @@
 							Forgot
 						</span>
 						<a class="txt2" href="/login/passrecover">
-							Username / Password?
+							Password?
 						</a>
 					</div>
 

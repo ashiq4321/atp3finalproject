@@ -26,29 +26,22 @@
 				</div>
 				<div class="card-body">
 					<form method="POST">
+					    @csrf
 						<div class="form-row m-b-55">
 							<div class="name">Name</div>
 							<div class="value">
 								<div class="row row-space">
 									<div class="col-2">
-										<div class="input-group-desc" class="wrap-input100 validate-input"
-											data-validate="<% if(error.fname!= null){error.fname.msg} %>">
+										<div class="input-group-desc" class="wrap-input100 validate-input">
 											<input class="input--style-5" type="text" name="fname"
-												value="<%= user.fname %>" required>
-											<% if(error.address!= null){ %>
-											<label><%= error.fname.msg %></label>
-											<% } %>
+												value="{{old('fname')}}" required>
 											<label class="label--desc">first name</label>
 										</div>
 									</div>
 									<div class="col-2">
-										<div class="input-group-desc" class="wrap-input100 validate-input"
-											data-validate="<% if(error.lname!= null){error.fname.msg} %>">
+										<div class="input-group-desc" class="wrap-input100 validate-input">
 											<input class="input--style-5" type="text" name="lname"
-												value="<%= user.lname %>" required>
-											<% if(error.lname!= null){ %>
-											<label><%= error.lname.msg %></label>
-											<% } %>
+												value="{{old('lname')}}"required>
 											<label class="label--desc">last name</label>
 										</div>
 									</div>
@@ -83,7 +76,7 @@
 									<div class="col-2">
 										<div class="input-group-desc">
 											<div class="rs-select2 js-select-simple select--no-search">
-												<select id="output" name="output" value="output"
+												<select id="area" name="area" value="area"
 													onchange="random_function1()" required>
 												</select>
 												<div class="select-dropdown"></div>
@@ -98,11 +91,7 @@
 							<div class="name">Address</div>
 							<div class="value">
 								<div class="input-group">
-									<input class="input--style-5" value="<%= user.address %>" type="text" name="address"
-										required>
-									<% if(error.address!= null){ %>
-									<label><%= error.address.msg %></label>
-									<% } %>
+									<input class="input--style-5" value="{{old('address')}}" type="text" name="address"required>
 								</div>
 							</div>
 						</div>
@@ -110,10 +99,7 @@
 							<div class="name">Email</div>
 							<div class="value">
 								<div class="input-group">
-									<input class="input--style-5" type="email" value="<%= user.email %>" name="email">
-									<% if(error.email!= null){ %>
-									<label><%= error.email.msg %></label>
-									<% } %>
+									<input class="input--style-5" type="email" value="{{old('email')}}"name="email">
 								</div>
 							</div>
 						</div>
@@ -121,10 +107,7 @@
 							<div class="name">Phone</div>
 							<div class="value">
 								<div class="input-group">
-									<input class="input--style-5" type="text" name="phone" value="<%=user.phone %>">
-									<% if(error.phone!= null){ %>
-									<label><%= error.phone.msg %></label>
-									<% } %>
+									<input class="input--style-5" type="text" name="phone" value="{{old('phone')}}">
 								</div>
 							</div>
 						</div>
@@ -132,10 +115,7 @@
 							<div class="name">National ID</div>
 							<div class="value">
 								<div class="input-group">
-									<input class="input--style-5" type="text" name="nid" value="<%= user.nid %>">
-									<% if(error.nid!= null){ %>
-									<label><%= error.nid.msg %></label>
-									<% } %>
+									<input class="input--style-5" type="text" name="nid" value="{{old('nid')}}">
 								</div>
 							</div>
 						</div>
@@ -146,10 +126,9 @@
 									<div class="col-2">
 										<div class="input-group-desc">
 											<div class="rs-select2 js-select-simple select--no-search">
-												<select name="usertype" required>
+												<select name="usertype" value="{{old('usertype')}}"required>
 													<option disabled="disabled" selected="selected">Choose option
 													</option>
-													<option value="Manager">Manager</option>
 													<option value="Customer">Customer</option>
 													<option value="House Provider">House Provider</option>
 												</select>
@@ -162,11 +141,8 @@
 										<div class="input-group-desc">
 											<div class="rs-select2 js-select-simple select--no-search">
 												<div class="input-group">
-													<input class="input--style-5" value="<%= user.uname %>" type="text"
+													<input class="input--style-5" value="{{old('username')}}"" type="text"
 														name="username">
-													<% if(error.uname!= null){ %>
-													<label><%=error.uname.msg %></label><br>
-													<% } %>
 												</div>
 												<div class="select-dropdown"></div>
 											</div>
@@ -199,6 +175,10 @@
 						<div>
 							<button class="btn btn--radius-2 btn--red" type="submit">Register</button>
 						</div>
+						@foreach($errors->all() as $error)
+							{{$error}} <br>
+						@endforeach
+						<h3>{{session('msg')}}</h3>
 
 						<div class="form-row p-t-20">
 							<h2>Already an existing customer?&nbsp;&nbsp;</h2>
@@ -230,7 +210,7 @@
 			for (i = 0; i < arr.length; i++) {
 				string = string + "<option value=" + arr[i] + ">" + arr[i] + "</option>";
 			}
-			document.getElementById("output").innerHTML = string;
+			document.getElementById("area").innerHTML = string;
 		}
 	</script>
 	<script src="/assets/signup/vendor/jquery/jquery.min.js"></script>

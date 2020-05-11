@@ -24,6 +24,20 @@ class ManagerController extends Controller
         return view('manager.index', ['user'=>$user]);
     }
     
+    public function makeadsSpam(Request $request)
+    {
+        DB::table('houseinfos')
+              ->where('houseid', $request->houseid)
+              ->update(array('status'=> 'Spam'));
+		return redirect()->route('manager.housetolet');  
+    }
+    public function makehouseAvailable(Request $request)
+    {
+        DB::table('houseinfos')
+              ->where('houseid', $request->houseid)
+              ->update(array('status'=> 'Available'));
+		return redirect()->route('manager.rentedhouse');  
+    }
     public function rentedhouse()
     {
         $houses = houseinfo::all()->where('status', 'Rented');
