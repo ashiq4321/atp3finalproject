@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'sess'=>    \App\Http\Middleware\SessionVerify::class,
         'alreadyin'=>    \App\Http\Middleware\alreadyLogged::class,
         'areYoumanager'=>    \App\Http\Middleware\areYoumanager::class,
+        'areUserPending'=>    \App\Http\Middleware\pendingUser::class,
         
     ];
 }

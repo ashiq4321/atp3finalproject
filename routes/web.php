@@ -18,10 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/login', 'LoginController@index')->name('login.index')->middleware("alreadyin");
-Route::post('/login', 'LoginController@verify');
+Route::post('/login', 'LoginController@verify')->middleware("areUserPending");;
 
 Route::get('/signup', 'SignupController@index')->name('signup.index');
 Route::post('/signup', 'SignupController@store');
+
+Route::get('/apply', 'SignupController@apply')->name('signup.apply');
+Route::post('/apply', 'SignupController@applied');
 
 Route::get('/login/passrecover', 'LoginController@passrecover')->name('login.passrecover');
 Route::post('/login/passrecover', 'LoginController@passrecovered');

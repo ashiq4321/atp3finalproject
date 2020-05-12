@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>sign up page</title>
+	<title>apply page</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="Colorlib Templates">
@@ -22,10 +22,10 @@
 		<div class="wrapper wrapper--w790">
 			<div class="card card-5">
 				<div class="card-heading">
-					<h2 class="title">Sign Up FORM</h2>
+					<h2 class="title">Apply FORM</h2>
 				</div>
 				<div class="card-body">
-					<form method="POST">
+					<form method="POST" enctype="multipart/form-data">
 					    @csrf
 						<div class="form-row m-b-55">
 							<div class="name">Name</div>
@@ -119,36 +119,19 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-row m-b-55">
-							<div class="name">User</div>
+						<div class="form-row">
+							<div class="name">Drop your Cv here</div>
 							<div class="value">
-								<div class="row row-space">
-									<div class="col-2">
-										<div class="input-group-desc">
-											<div class="rs-select2 js-select-simple select--no-search">
-												<select name="usertype" value="{{old('usertype')}}"required>
-													<option disabled="disabled" selected="selected">Choose option
-													</option>
-													<option value="Customer">Customer</option>
-													<option value="House Provider">House Provider</option>
-												</select>
-												<div class="select-dropdown"></div>
-											</div>
-											<label class="label--desc">usertype</label>
-										</div>
-									</div>
-									<div class="col-2">
-										<div class="input-group-desc">
-											<div class="rs-select2 js-select-simple select--no-search">
-												<div class="input-group">
-													<input class="input--style-5" value="{{old('username')}}"" type="text"
-														name="username">
-												</div>
-												<div class="select-dropdown"></div>
-											</div>
-											<label class="label--desc">username</label>
-										</div>
-									</div>
+								<div class="input-group">
+									<input class="input--style-5" type="file" name="cv" value="{{old('cv')}}">
+								</div>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="name">username</div>
+							<div class="value">
+								<div class="input-group">
+									<input class="input--style-5" type="text" name="username" value="{{old('username')}}">
 								</div>
 							</div>
 						</div>
@@ -181,11 +164,9 @@
 						<h3>{{session('msg')}}</h3>
 
 						<div class="form-row p-t-20">
-							<h2>Already an existing user ?&nbsp;&nbsp;</h2>
+							<h2>Already an existing manager ?&nbsp;&nbsp;</h2>
 							<a href="/login" class="btn btn--radius-2 btn--green" style="text-decoration: none">Sign
 								In</a>
-							<h2>For Manager Position</h2>
-							<a href="/apply" class="btn--radius-2 btn--green" style="text-decoration: none">We Hire!</a> |
 							<a href="/" style="text-decoration: none; color: black">
 								<h2> Back To Home <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i> </h2>
 							</a>

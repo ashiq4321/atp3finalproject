@@ -39,9 +39,9 @@
                         <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">About</a></li>
                         <li class="nav-item"><a href="/search" class="nav-link">Search Home</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Help</a></li>
                         <li class="nav-item"><a href="/login" class="nav-link">login</a></li>
                         <li class="nav-item cta"><a href="/signup" class="nav-link">signup Now</a></li>
+                        <li class="nav-item cta"><a href="/apply" class="nav-link">We hire</a></li>
                     </ul>
                 </div>
             </div>
@@ -85,8 +85,9 @@
             <div class="row text-center">
                 <div class="col-md-12">
                     <h2 class="mb-5 text-black">Want To Get our service?</h2>
-                    <p class="col-10 col-md-8 d-none d-xl-block"><a href="/signup" class="mb-5 text-black">sign up
-                            Now</a>
+                    <p class="col-10 col-md-8 d-none d-xl-block">
+                    <a href="/signup" class="mb-5 text-black">sign up Now</a> |
+                    <a href="/apply" class="mb-5 text-black">We Hire</a>
                     </p>
                 </div>
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Validator;
 use App\User;
 use App\customer;
+use App\manager;
 use App\houseProvider;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,10 @@ class SignupController extends Controller
     
     public function index(Request $req){
     	return view('signup.index');
+    }
+
+    public function apply(Request $req){
+    	return view('signup.apply');
     }
 
     public function store(Request $request)
@@ -45,6 +50,7 @@ class SignupController extends Controller
 		$user->password 	= $request->password;
         $user->usertype = $request->usertype;
         $user->phone 	= $request->phone;
+        $user->status 	= "unblocked";
         $houseProvider 			= new houseProvider;
         $customer 			= new customer;
 
@@ -84,5 +90,53 @@ class SignupController extends Controller
             }
 
         }	
+    }
+    public function applied(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            'fname'=>'required',
+            'lname'=>'required',
+            'username'=>'required|unique:users',
+            'email'=>'required|email|unique:managers',
+            'division'=>'required',
+            'area'=>'required',
+            'address'=>'required',
+            'cv'=>'required',
+            'nid'=>'required|size:13',
+            'phone'=>'required|size:11',
+            'password'=>'required',
+            'cpassword'=>'same:password'
+		]);
+		if($validation->fails()){
+			return back()
+					->with('errors', $validation->errors())
+					->withInput();
+			return redirect()->route('signup.index')
+							->with('errors', $validation->errors())
+							->withInput();		
+        }
+        $user 			    = new User;
+        $manager 			= new manager;
+        $manager->username = $user->username 	=$request->username;
+	    $user->password 	= $request->password;
+        $user->usertype     ="Manager";
+        $user->phone 	    = $request->phone;
+        $user->status   	= "unblocked";
+        $manager->fname 	=$request->fname;
+        $manager->lname 	=$request->lname;
+        $manager->email = $request->email;
+        $manager->nid = $request->nid;
+        $manager->address = $request->address;
+        $manager->division = $request->division;
+        $manager->area = $request->area;
+        $manager->type = "Pending";
+
+        if($request->hasFile('cv') && $manager->save() && $user->save() ){
+            $file = $request->file('cv');
+            $file->name=$request->username;
+            $file->store('CV');
+            return view('signup.applied');
+           
+        }
     }
 }
