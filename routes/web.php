@@ -56,3 +56,6 @@ Route::resource('admin', 'AdminController')->middleware("sess");
 Route::get('/logout', 'logoutController@index');
 
 Route::get('/userblocked', 'UserBlockController@index');
+
+Route::get('/search', 'SearchController@index')->name('search.index');
+Route::post('/search', 'SearchController@filter');

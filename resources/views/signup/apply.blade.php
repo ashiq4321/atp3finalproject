@@ -180,11 +180,11 @@
 		function random_function() {
 			var a = document.getElementById("Area").value;
 			if (a === "Chittagong") {
-				var arr = ["Agrabad", "Chandgaon R/A", "Chawkbazar", "Anderkilla", "GEC",
+				var arr = ["Agrabad", "Chandgaon", "Chawkbazar", "Anderkilla", "GEC",
 					"Khulshi"
 				];
 			} else if (a === "Dhaka") {
-				var arr = ["Bashundhara R/A", "Dhanmondi R/A", "Banani", "Uttara", "Mirpur",
+				var arr = ["Bashundhara", "Dhanmondi", "Banani", "Uttara", "Mirpur",
 					"Nikunja"
 				];
 			}
