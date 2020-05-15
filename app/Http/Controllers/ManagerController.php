@@ -204,7 +204,7 @@ class ManagerController extends Controller
 							->with('errors', $validation->errors())
 							->withInput();		
         }
-       $affected= DB::table('managers')
+        DB::table('managers')
               ->where('username', $request->username)
               ->update(array('fname' => $request->fname,
                        'lname' => $request->lname, 

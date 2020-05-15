@@ -59,3 +59,8 @@ Route::get('/userblocked', 'UserBlockController@index');
 
 Route::get('/search', 'SearchController@index')->name('search.index');
 Route::post('/search', 'SearchController@filter');
+
+Route::get('/search/{houseid}', 'HouseController@index')->name('house.index')->middleware("sess");
+Route::get('/house/{houseid}/select', 'HouseController@selectAsInterested')->name('house.selectAsInterested')->middleware("sess");
+Route::get('/house/{houseid}/notselect', 'HouseController@selectAsNotInterested')->name('house.selectAsNotInterested')->middleware("sess");
+

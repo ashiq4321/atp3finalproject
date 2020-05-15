@@ -24,6 +24,22 @@ class pendingUser
             return redirect()->route('login.index');
 
         }
+        elseif(DB::table('customers')
+        ->where('username', $request->uname)
+        ->where('type','Pending')
+        ->exists()) {
+            $request->session()->flash('msg', 'Your Account verification is under process! till then, keep browsing ');
+            return redirect()->route('login.index');
+
+        }
+        elseif(DB::table('houseowners')
+        ->where('username', $request->uname)
+        ->where('type','Pending')
+        ->exists()) {
+            $request->session()->flash('msg', 'Your Account verification is under process! till then, keep browsing ');
+            return redirect()->route('login.index');
+
+        }
         return $next($request);
     }
 }

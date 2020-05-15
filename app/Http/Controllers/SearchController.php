@@ -9,7 +9,7 @@ use App\houseinfo;
 
 class SearchController extends Controller
 {
-    public function index(Request $Request){
+    public function index(Request $request){
         $houses = houseinfo::all()->where('status', 'Available');
         $houses = collect($houses )->paginate(10);
 		return view('search.index', ['houses'=>$houses]);
