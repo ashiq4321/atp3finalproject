@@ -47,9 +47,9 @@ class SignupController extends Controller
        
         $user 			= new User;
         $user->username 	=$request->username;
-		$user->password 	= $request->password;
-        $user->usertype = $request->usertype;
+        $user->password 	= $request->password;
         $user->phone 	= $request->phone;
+        $user->usertype = $request->usertype;
         $user->status 	= "unblocked";
         $houseProvider 			= new houseProvider;
         $customer 			= new customer;
@@ -59,6 +59,7 @@ class SignupController extends Controller
             $houseProvider->lname 	=$request->lname;
             $houseProvider->username 	=$request->username;
             $houseProvider->email = $request->email;
+            $houseProvider->phone 	= $request->phone;
             $houseProvider->nid = $request->nid;
             $houseProvider->address = $request->address;
             $houseProvider->type = "Pending";
@@ -76,6 +77,7 @@ class SignupController extends Controller
             $customer->lname 	=$request->lname;
             $customer->username 	=$request->username;
             $customer->email = $request->email;
+            $customer->phone 	= $request->phone;
             $customer->nid = $request->nid;
             $customer->address = $request->address;
             $customer->type = "Pending";
@@ -120,7 +122,7 @@ class SignupController extends Controller
         $manager->username = $user->username 	=$request->username;
 	    $user->password 	= $request->password;
         $user->usertype     ="Manager";
-        $user->phone 	    = $request->phone;
+        $manager->phone =$user->phone 	    = $request->phone;
         $user->status   	= "unblocked";
         $manager->fname 	=$request->fname;
         $manager->lname 	=$request->lname;
@@ -130,11 +132,12 @@ class SignupController extends Controller
         $manager->division = $request->division;
         $manager->area = $request->area;
         $manager->type = "Pending";
-
-        if($request->hasFile('cv') && $manager->save() && $user->save() ){
+        // && $manager->save() && $user->save()
+        if($request->hasFile('cv')){
             $file = $request->file('cv');
-            $file->name=$request->username;
-            $file->store('CV');
+            $extension = $request->file('cv')->extension();
+            $filename=$request->username;
+            $file->storeAs('CV',  $filename.'.'.$extension);
             return view('signup.applied');
            
         }

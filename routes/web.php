@@ -29,6 +29,7 @@ Route::post('/apply', 'SignupController@applied');
 Route::get('/login/passrecover', 'LoginController@passrecover')->name('login.passrecover');
 Route::post('/login/passrecover', 'LoginController@passrecovered');
 
+Route::get('/manager/spamAds', 'ManagerController@spamAds')->name('manager.spamAds')->middleware("sess","areYoumanager");
 Route::get('/manager/view_Available/{houseid}', 'ManagerController@makeadsSpam')->name('manager.makeadsSpam')->middleware('sess','areYoumanager');
 Route::get('/manager/view_Rented/{houseid}', 'ManagerController@makehouseAvailable')->name('manager.makehouseAvailable')->middleware('sess','areYoumanager');
 Route::get('/manager/view_Rented', 'ManagerController@rentedhouse')->name('manager.rentedhouse')->middleware("sess","areYoumanager");
@@ -49,8 +50,10 @@ Route::patch('/manager/profile/{username}/edit', 'ManagerController@updateProfil
 Route::get('/manager/profile', 'ManagerController@editProfile')->middleware("sess","areYoumanager");
 Route::resource('manager', 'ManagerController')->middleware("sess","areYoumanager");
 
-Route::resource('customer', 'CustomerController')->middleware("sess");
+Route::get('/houseprovider/placeAds', 'HouseProviderController@placeAds')->name('houseProvider.placeAds')->middleware("sess");
 Route::resource('houseProvider', 'HouseProviderController')->middleware("sess");
+
+Route::resource('customer', 'CustomerController')->middleware("sess");
 Route::resource('admin', 'AdminController')->middleware("sess");
 
 Route::get('/logout', 'logoutController@index');

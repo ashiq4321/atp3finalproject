@@ -23,6 +23,12 @@ class ManagerController extends Controller
         $user = DB::table('managers')->where('username', $request->session()->get('uname'))->first();
         return view('manager.index', ['user'=>$user]);
     }
+
+    public function spamAds()
+    {
+        $houses = houseinfo::all()->where('status', 'Spam');
+		return view('manager.rentedHouses', ['houses'=>$houses]);
+    }
     
     public function makeadsSpam(Request $request)
     {
@@ -97,6 +103,7 @@ class ManagerController extends Controller
     public function rejecthouseProvider(Request $request)
     {
         DB::table('houseowners')->where('username',$request->username)->delete();
+        DB::table('users')->where('username',$request->username)->delete();
         return redirect()->route('manager.pendingHouseOwner');    
     }
     public function accepthouseProvider(Request $request,manager $manager)
@@ -115,6 +122,7 @@ class ManagerController extends Controller
     public function rejectCustomer(Request $request)
     {
         DB::table('customers')->where('username',$request->username)->delete();
+        DB::table('users')->where('username',$request->username)->delete();
         return redirect()->route('manager.pendingCustomers');    
     }
     public function acceptCustomer(Request $request,manager $manager)

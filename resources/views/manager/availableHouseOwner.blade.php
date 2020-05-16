@@ -23,6 +23,7 @@
 	<a href="/manager/view_Customers">Available customer</a><br>
 	<a href="/manager/view_Owners">House Owners</a><br>
 	<a href="/manager/view_Rented">Rented Apartments</a><br>
+	<a href="/manager/spamAds">Spam Ads</a><br>
 
 	<table border="1">
 		<tr>

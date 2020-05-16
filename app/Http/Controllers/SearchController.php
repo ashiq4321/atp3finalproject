@@ -11,7 +11,7 @@ class SearchController extends Controller
 {
     public function index(Request $request){
         $houses = houseinfo::all()->where('status', 'Available');
-        $houses = collect($houses )->paginate(10);
+        $houses = collect($houses )->paginate(2);
 		return view('search.index', ['houses'=>$houses]);
     }
     public function filter(Request $request, houseinfo $houses ){

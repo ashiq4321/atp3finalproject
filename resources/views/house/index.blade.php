@@ -52,9 +52,13 @@
 				if you like it  <a href="{{route('house.selectAsInterested', $house->houseid)}}">{{$msg}}</a>
 				@else 
 				<h1 style="color:green;">you liked it</h1>
-                <a  onclick="return confirm('Are you sure?')" href="{{route('house.selectAsNotInterested', $house->houseid)}}">Select as  not interested</a>
+                if you dont like it, then <a  onclick="return confirm('Are you sure?')" href="{{route('house.selectAsNotInterested', $house->houseid)}}">Select as  not interested</a>
 				@endif   
-				<h1 style="color:green;">You can Contact with House Owner</h1>
+				<p style="color:green;">You can Contact with House Owner <u>{{$contact}}</u1> </p>
+				Find in googlemap
+				<div style="width: 500px; height: 500px; ">
+					{!! Mapper::render() !!}
+				</div>
 				
 	
 </body>

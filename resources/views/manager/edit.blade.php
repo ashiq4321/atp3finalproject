@@ -47,6 +47,7 @@
 								<a class="mb-5 text-blue" href="/manager/view_Customers">Available customer</a>|
 								<a class="mb-5 text-blue" href="/manager/view_Owners">House Owners</a>|
 								<a class="mb-5 text-blue" href="/manager/view_Rented">Rented Apartments</a>|
+								<a href="/manager/spamAds">Spam Ads</a><br>|
 								<a class="mb-5 text-blue" href="/logout">Logout</a>
 							</ul>
 						</nav>

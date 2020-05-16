@@ -112,6 +112,7 @@
 							</div>
 						</div>
 					</li>
+					<li><a href="/placeAd"><i class="glyphicon glyphicon-search"></i> Search Home</a></li>
 					<li><a href="/search"><i class="glyphicon glyphicon-search"></i> Search Home</a></li>
 					<li><a href="/logout"><i class="glyphicon glyphicon-log-out"></i> Log Out </a></li>
 
@@ -124,17 +125,12 @@
 
 			<div class="container">
 				<div class="row align-items-center">
-					<h2 align='center'>manager home</h2>
+					<h2 align='center'>House owner home</h2>
 					<div class="col-10 col-md-8 d-none d-xl-block">
 						<nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
 							<ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
-								<a class="mb-5 text-blue" href="/manager">Home</a>|
-								<a class="mb-5 text-blue" href="/manager/pendingCustomers">Pending Customer</a>|
-								<a class="mb-5 text-blue" href="/manager/pendingHouseowners">Pending Houseowners</a>|
-								<a class="mb-5 text-blue" href="/manager/view_Available">House to-let</a>|
-								<a class="mb-5 text-blue" href="/manager/view_Customers">Available customer</a>|
-								<a class="mb-5 text-blue" href="/manager/view_Owners">House Owners</a>|
-								<a class="mb-5 text-blue" href="/manager/view_Rented">Rented Apartments</a>|
+								<a class="mb-5 text-blue" href="/houseprovider">Home</a>|
+								<a class="mb-5 text-blue" href="/houseprovider/placeAds">Place Ads</a>|
 								<a class="mb-5 text-blue" href="/logout">Logout</a>
 							</ul>
 						</nav>

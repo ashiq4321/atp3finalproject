@@ -17,6 +17,11 @@ class HouseProviderController extends Controller
         return view('houseProvider.index');
 		
     }
+    public function placeAds(Request $request)
+    {	
+        return view('houseProvider.placeAds');
+		
+    }
 
     /**
      * Show the form for creating a new resource.

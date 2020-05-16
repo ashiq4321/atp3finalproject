@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Customers</title>
+	<title>Spam Advertise houses</title>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="../css/manager.css">
@@ -10,7 +10,7 @@
 
 <body>
 	<div>
-		<h2>Customers</h2>
+		<h2>Spam Advertise houses</h2>
 	</div>
 
 	<a href="/manager">Home</a>|
@@ -24,40 +24,31 @@
 	<a href="/manager/view_Owners">House Owners</a><br>
 	<a href="/manager/view_Rented">Rented Apartments</a><br>
 	<a href="/manager/spamAds">Spam Ads</a><br>
+
 	<table border="1">
 		<tr>
-			<td>First Name</td>
-			<td>Last Name</td>
-			<td>USERNAME</td>
-			<td>Email</td>
-			<td>Phone</td>
-			<td>Nid</td>
-            <td>Status</td>
+			<td>House Id</td>
+            <td>House Name</td>
+            <td>House Owner</td>
+			<td>Division</td>
+            <td>Area</td>
+            <td>Adress</td>
             <td>Action</td>
-		</tr>
-		@foreach($users as $user)
+        </tr>
+        @foreach($houses as $house)
 			<tr>
-				<td>{{$user->fname}}</td>
-				<td>{{$user->lname}}</td>
-				<td>{{$user->username}}</td>
-				<td>{{$user->email}}</td>
-                <td>{{$user->phone}}</td>
-                <td>{{$user->nid}}</td>
-                @if($user->status=='Blocked')
-                <td  style="color:red;">{{$user->status}}</td>
-                @else 
-                <td  style="color:green;">{{$user->status}}</td>
-                @endif
+				<td>{{$house->houseid}}</td>
+				<td>{{$house->housename}}</td>
+				<td>{{$house->houseowner}}</td>
+				<td>{{$house->division}}</td>
+                <td>{{$house->area}}</td>
+                <td>{{$house->address}}</td>
 				<td>
-                    <a onclick="return confirm('Are you sure?')" href="{{route('manager.acceptCustomer', $user->username)}}">Review</a> |
-                    @if($user->status=='Blocked')
-                      <a onclick="return confirm('Are you sure?')" href="{{route('manager.unblockCustomer', $user->username)}}">Unblock</a>
-                    @else       
-                    <a onclick="return confirm('Are you sure?')" href="{{route('manager.blockCustomer', $user->username)}}">block</a>
-                    @endif
+                    <a onclick="return confirm('Are you sure?')" href="{{route('manager.makeadsSpam', $house->houseid)}}">spam</a>
 				</td>
 			</tr>
 	    	@endforeach
+			
 	</table>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
 		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
